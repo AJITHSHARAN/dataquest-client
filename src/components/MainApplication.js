@@ -164,7 +164,7 @@ export default function MainApplication() {
         for (let i = 0; i < files.length; i++) {
           let status = "";
           var file = files[i]
-          list1.map(async (dir, j) => {
+          Promise.all(list1.map(async (dir, j) => {
             if (dir.filename == file.name && dir.checked) {
               var lines = await getFile(file);
               for (var line = 0; line < lines.length; line++) {
@@ -184,7 +184,7 @@ export default function MainApplication() {
               console.log("status" + status);
               setDirectoryList([...list1]);
             }
-          })
+          }));
         }
         console.log("list is "+list1);
         setSaveButtonDisplayFlag(false)
